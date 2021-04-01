@@ -1,4 +1,3 @@
-# coding = utf-8
 # author = duang
 
 import requests
@@ -7,9 +6,17 @@ class TestQYweixin:
 
     # 获取token信息
     def setup(self):
-        corpid ="ww1f4a3b6250a35483"
-        corpsecret = "fPQO_LnwS7aZpZpFDqHhGdZgyTdcsWZ6H_8sP-JqATc"
-        r = requests.get(f"https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid={corpid}&corpsecret={corpsecret}")
+        # corpid ="ww1f4a3b6250a35483"
+        # corpsecret = "fPQO_LnwS7aZpZpFDqHhGdZgyTdcsWZ6H_8sP-JqATc"
+        # r = requests.get(f"https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid={corpid}&corpsecret={corpsecret}")
+        # self.token = r.json()["access_token"]
+        # print(self.token)
+        pamars = {
+            "corpid": "ww1f4a3b6250a35483",
+            "corpsecret":"fPQO_LnwS7aZpZpFDqHhGdZgyTdcsWZ6H_8sP-JqATc"
+        }
+        url = "https://qyapi.weixin.qq.com/cgi-bin/gettoken"
+        r = requests.get(url,params=pamars)
         self.token = r.json()["access_token"]
         print(self.token)
 
@@ -18,7 +25,7 @@ class TestQYweixin:
         url = f"https://qyapi.weixin.qq.com/cgi-bin/user/create?access_token={self.token}"
         data = {
             "userid": "test1111",
-            "name": "test1",
+            "name": "黄忠",
             "mobile": "+86 15023491111",
             "department": [1]
         }
